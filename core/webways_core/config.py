@@ -5,17 +5,37 @@ import json
 import os
 import secrets
 import stat
+import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from urllib.parse import urlsplit
 
 
+IS_WINDOWS = sys.platform == "win32"
+
+
 def default_config_dir() -> Path:
-    return Path(os.environ.get("WEBWAYS_CONFIG_DIR") or Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "webways")
+    """Settings, token, publisher key and resume data. Override with WEBWAYS_CONFIG_DIR.
+
+    Windows: %LOCALAPPDATA%\\WebWays (per-user and not roamed, so resume data and secrets stay on this PC).
+    Elsewhere: $XDG_CONFIG_HOME/webways or ~/.config/webways.
+    """
+    if os.environ.get("WEBWAYS_CONFIG_DIR"):
+        return Path(os.environ["WEBWAYS_CONFIG_DIR"])
+    if IS_WINDOWS:
+        return Path(os.environ.get("LOCALAPPDATA") or Path.home() / "AppData" / "Local") / "WebWays"
+    return Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / "webways"
 
 
 def default_download_dir() -> Path:
-    return Path.home() / "Downloads" / "webways"
+    return Path.home() / "Downloads" / ("WebWays" if IS_WINDOWS else "webways")
+
+
+def default_ui_dir() -> Path:
+    """Where the built web UI lives: next to the source tree, or inside a PyInstaller bundle."""
+    if getattr(sys, "frozen", False):
+        return Path(getattr(sys, "_MEIPASS", Path(sys.executable).parent)) / "ui" / "dist"
+    return Path(__file__).resolve().parents[2] / "ui" / "dist"
 
 
 def normalize_source_url(url: str) -> str:

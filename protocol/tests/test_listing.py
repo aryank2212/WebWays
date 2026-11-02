@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from webways_protocol import (Identity, ProtocolError, canonical, listing_id, sign_listing,
@@ -86,4 +88,5 @@ def test_key_file_perms(tmp_path):
     p = tmp_path / "k"
     a = Identity.load_or_create(p)
     assert Identity.load_or_create(p).public_key == a.public_key
-    assert oct(p.stat().st_mode & 0o777) == "0o600"
+    if sys.platform != "win32":                # Windows ignores POSIX modes; the profile directory ACL protects the file
+        assert oct(p.stat().st_mode & 0o777) == "0o600"

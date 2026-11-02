@@ -53,7 +53,7 @@ def wait_up(url, timeout=20):
 
 def main():
     tmp = Path(tempfile.mkdtemp(prefix="webways-e2e-"))
-    env = {**os.environ, "PYTHONPATH": ":".join(str(ROOT / d) for d in ("protocol", "indexer", "core")),
+    env = {**os.environ, "PYTHONPATH": os.pathsep.join(str(ROOT / d) for d in ("protocol", "indexer", "core")),
            "PYTHONWARNINGS": "ignore"}
     procs = []
 

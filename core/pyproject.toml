@@ -8,6 +8,7 @@ license = { text = "GPL-3.0-or-later" }
 
 [project.scripts]
 webways-core = "webways_core.cli:main"
+webways = "webways_core.cli:app_main"
 
 [tool.setuptools]
 packages = ["webways_core"]

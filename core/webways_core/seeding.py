@@ -26,6 +26,18 @@ DISK_MARGIN = 256 * 1024 * 1024
 CHUNK = 1024 * 1024
 
 
+def _replace(src: Path, dst: Path) -> None:
+    """os.replace, retried briefly: on Windows an antivirus scan or indexer can hold a just-written file."""
+    for attempt in range(10):
+        try:
+            os.replace(src, dst)
+            return
+        except PermissionError:
+            if attempt == 9:
+                raise
+            time.sleep(0.1 * (attempt + 1))
+
+
 class SeedError(Exception):
     def __init__(self, status: int, message: str):
         super().__init__(message)
@@ -101,7 +113,7 @@ class SeedStaging:
                     fh.write(chunk)
             if received != size:
                 raise SeedError(422, f"expected exactly {size} bytes, got {received}")
-            os.replace(part, target)
+            _replace(part, target)
         except BaseException:
             part.unlink(missing_ok=True)
             raise

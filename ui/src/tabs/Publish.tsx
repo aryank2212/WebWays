@@ -51,7 +51,7 @@ export default function Publish({ prefill }: { prefill?: { infohash: string; tit
         <p className="small">Your publisher key: <code>{pub}</code></p>
         <h3>1 · Pick what to share</h3>
         <div className="row">
-          <input value={path} onChange={(e) => setPath(e.target.value)} placeholder="Path of a file or folder to seed, e.g. /home/me/film.mp4" />
+          <input value={path} onChange={(e) => setPath(e.target.value)} placeholder={`Path of a file or folder to seed, e.g. ${/Windows/.test(navigator.userAgent) ? "C:\\Users\\me\\film.mp4" : "/home/me/film.mp4"}`} />
           <button onClick={seed} disabled={!path}>Create &amp; seed</button>
         </div>
         <label>…or choose an existing torrent
