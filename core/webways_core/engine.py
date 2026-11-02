@@ -5,7 +5,7 @@ import asyncio
 import logging
 import re
 import warnings
-from pathlib import Path
+from pathlib import Path, PurePath
 from typing import Any
 
 import libtorrent as lt
@@ -272,7 +272,8 @@ class Engine:
             if fs.file_flags(i) & lt.file_storage.flag_pad_file:
                 continue
             size = fs.file_size(i)
-            out.append({"index": i, "path": fs.file_path(i), "size": size, "priority": prio[i],
+            # always "/"-separated in the API, whatever the OS (libtorrent returns the native separator)
+            out.append({"index": i, "path": PurePath(fs.file_path(i)).as_posix(), "size": size, "priority": prio[i],
                         "progress": round(prog[i] / size, 4) if size else 1.0})
         return out
 

@@ -13,7 +13,7 @@ import os
 import shutil
 import time
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePath
 
 import libtorrent as lt
 from aiohttp import web
@@ -90,7 +90,7 @@ class SeedStaging:
             self.cancel(key)
         self.pending[key] = Pending(data, files)
         return {"infohash": key, "name": ti.name(),
-                "files": [{"index": i, "path": fs.file_path(i), "size": size} for i, (_, size) in files.items()]}
+                "files": [{"index": i, "path": PurePath(fs.file_path(i)).as_posix(), "size": size} for i, (_, size) in files.items()]}
 
     async def put(self, request: web.Request, key: str, index: int) -> None:
         p = self.pending.get(key)
