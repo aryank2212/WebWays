@@ -102,7 +102,11 @@ def main():
             time.sleep(0.2)
         url = CLI + info["files"][0]["stream_url"]
         status, body, hdr = http("GET", url, headers={"Range": "bytes=2000000-2000999"})
-        assert status == 206 and body == movie.read_bytes()[2000000:2001000], "range bytes differ"
+        want = movie.read_bytes()[2000000:2001000]
+        if not (status == 206 and body == want):
+            first = next((i for i, (a, b) in enumerate(zip(body, want)) if a != b), None)
+            raise AssertionError(f"range bytes differ: status={status} got={len(body)}B want={len(want)}B first_mismatch={first} "
+                                 f"zero_bytes_in_body={body.count(0)} content_range={hdr.get('Content-Range')} url={url}")
         print(f"  206 OK, {len(body)} bytes match; progress {info['progress']:.2f}")
         for _ in range(100):
             if j("GET", f"{CLI}/api/torrents/{key}", tc)["state"] in ("seeding", "finished"):
