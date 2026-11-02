@@ -1,4 +1,4 @@
-# Swarm
+# WebWays
 
 A BitTorrent client with streaming, plus an optional decentralized marketplace layer. The client is
 useful on its own; the marketplace is a set of signed listings served by federated index nodes that
@@ -24,7 +24,7 @@ make test             # 60 unit/integration tests
 make e2e              # real processes: indexer + 2 daemons, publish -> search -> stream -> takedown
 ```
 
-Run an index node: `SWARM_ADMIN_TOKEN=... make indexer`, then see [docs/operators.md](docs/operators.md).
+Run an index node: `WEBWAYS_ADMIN_TOKEN=... make indexer`, then see [docs/operators.md](docs/operators.md).
 In the UI, *Sources* → add that node's URL, *Publish* → create an identity, seed a file and list it.
 
 ## Free torrent & magnet creator (built in)

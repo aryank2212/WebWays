@@ -8,9 +8,9 @@ from aiohttp.test_utils import TestClient, TestServer
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-from swarm_core.api import make_app, stream_sig  # noqa: E402
-from swarm_core.config import Settings  # noqa: E402
-from swarm_core.engine import Engine  # noqa: E402
+from webways_core.api import make_app, stream_sig  # noqa: E402
+from webways_core.config import Settings  # noqa: E402
+from webways_core.engine import Engine  # noqa: E402
 
 TOKEN = "test-token"
 AUTH = {"Authorization": f"Bearer {TOKEN}"}

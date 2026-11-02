@@ -1,13 +1,13 @@
 [project]
-name = "swarm-indexer"
-version = "0.2.0"
+name = "webways-indexer"
+version = "0.3.0"
 description = "Federated index node: signed listings, FTS search, operator moderation"
 requires-python = ">=3.11"
-dependencies = ["swarm-protocol", "aiohttp>=3.9"]
+dependencies = ["webways-protocol", "aiohttp>=3.9"]
 license = { text = "AGPL-3.0-or-later" }
 
 [project.scripts]
-swarm-indexer = "swarm_indexer.cli:main"
+webways-indexer = "webways_indexer.cli:main"
 
 [tool.setuptools]
-packages = ["swarm_indexer"]
+packages = ["webways_indexer"]

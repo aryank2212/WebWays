@@ -13,7 +13,7 @@ import libtorrent as lt
 from .config import Settings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="libtorrent")
-log = logging.getLogger("swarm.engine")
+log = logging.getLogger("webways.engine")
 
 _STATE = {
     lt.torrent_status.checking_files: "checking",
@@ -57,7 +57,7 @@ class Engine:
         s = self.settings
         enc = lt.enc_policy.forced if s.encryption == "forced" else lt.enc_policy.enabled
         pack: dict[str, Any] = {
-            "user_agent": "swarm/0.1 libtorrent/" + lt.__version__,
+            "user_agent": "webways/0.1 libtorrent/" + lt.__version__,
             "listen_interfaces": f"0.0.0.0:{s.listen_port},[::]:{s.listen_port}",
             "enable_dht": True, "enable_lsd": True, "enable_upnp": True, "enable_natpmp": True,
             "out_enc_policy": int(enc), "in_enc_policy": int(enc),
@@ -218,7 +218,7 @@ class Engine:
             if not re.match(r"^https?://[^\s/]+", url):
                 raise EngineError(f"bad web seed URL: {url[:80]}")
         ct = lt.create_torrent(lt.list_files(str(src)), piece_size, _VERSIONS[version])
-        ct.set_creator("swarm")
+        ct.set_creator("webways")
         if comment:
             ct.set_comment(comment[:500])
         for i, url in enumerate(trackers):

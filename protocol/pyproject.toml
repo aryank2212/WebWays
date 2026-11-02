@@ -1,10 +1,10 @@
 [project]
-name = "swarm-protocol"
-version = "0.2.0"
-description = "Signed listing format for the swarm marketplace layer"
+name = "webways-protocol"
+version = "0.3.0"
+description = "Signed listing format for the WebWays marketplace layer"
 requires-python = ">=3.11"
 dependencies = ["cryptography>=42"]
 license = { text = "Apache-2.0" }
 
 [tool.setuptools]
-packages = ["swarm_protocol"]
+packages = ["webways_protocol"]

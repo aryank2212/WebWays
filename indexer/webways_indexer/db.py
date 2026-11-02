@@ -8,7 +8,7 @@ import threading
 import time
 from typing import Any, Iterable
 
-from swarm_protocol import supersedes
+from webways_protocol import supersedes
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS listings (

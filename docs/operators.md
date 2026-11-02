@@ -5,8 +5,8 @@ An index node stores signed listings, answers searches, and (optionally) pulls f
 no blocklist; the operator decides everything below.
 
 ```
-export SWARM_ADMIN_TOKEN="$(openssl rand -hex 24)"     # admin API is disabled without it
-PYTHONPATH=protocol:indexer .venv/bin/python -m swarm_indexer serve \
+export WEBWAYS_ADMIN_TOKEN="$(openssl rand -hex 24)"     # admin API is disabled without it
+PYTHONPATH=protocol:indexer .venv/bin/python -m webways_indexer serve \
     --db index.db --config node.toml [--peer https://other.example] [--blocklist https://other.example]
 ```
 
@@ -28,7 +28,7 @@ sync_interval = 300
 
 ## Moderation tools
 
-Everything under `/v1/admin/*` needs `Authorization: Bearer $SWARM_ADMIN_TOKEN`.
+Everything under `/v1/admin/*` needs `Authorization: Bearer $WEBWAYS_ADMIN_TOKEN`.
 
 | action | call |
 |---|---|

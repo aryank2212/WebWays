@@ -69,7 +69,7 @@ export async function make(files: Picked[], o: MakeOptions, onProgress: (done: n
   const kept = files.filter((f) => !isJunk(f));
   if (!kept.length) throw new Error("Nothing to share: all selected files are hidden system files.");
   const opts: Record<string, unknown> = {
-    name: o.name || undefined, createdBy: "swarm", private: o.private || undefined,
+    name: o.name || undefined, createdBy: "webways", private: o.private || undefined,
     comment: o.comment || undefined, pieceLength: o.pieceLength || undefined,
     // An explicit (possibly empty) list stops the library adding its eight built-in public trackers.
     announceList: o.trackers.map((t) => [t]),

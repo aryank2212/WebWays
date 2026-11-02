@@ -1,13 +1,13 @@
 [project]
-name = "swarm-core"
-version = "0.2.0"
+name = "webways-core"
+version = "0.3.0"
 description = "Torrent daemon (libtorrent) with local API and HTTP streaming"
 requires-python = ">=3.11"
-dependencies = ["swarm-protocol", "aiohttp>=3.9", "libtorrent>=2.0"]
+dependencies = ["webways-protocol", "aiohttp>=3.9", "libtorrent>=2.0"]
 license = { text = "GPL-3.0-or-later" }
 
 [project.scripts]
-swarm-core = "swarm_core.cli:main"
+webways-core = "webways_core.cli:main"
 
 [tool.setuptools]
-packages = ["swarm_core"]
+packages = ["webways_core"]

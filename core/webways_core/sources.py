@@ -11,7 +11,7 @@ from typing import Any, Callable
 
 import aiohttp
 
-from swarm_protocol import ProtocolError, listing_id, supersedes, verify_listing
+from webways_protocol import ProtocolError, listing_id, supersedes, verify_listing
 
 from .config import Settings, normalize_source_url
 
@@ -48,8 +48,8 @@ class Sources:
             raise ValueError("source already added")
         async with self._session_factory() as session:
             info = await _fetch(session, "GET", f"{url}/v1/node")
-        if not isinstance(info, dict) or info.get("software") != "swarm-indexer":
-            raise ValueError("that URL is not a swarm index node")
+        if not isinstance(info, dict) or info.get("software") != "webways-indexer":
+            raise ValueError("that URL is not a WebWays index node")
         entry = {"url": url, "name": (name or info.get("name") or url)[:80], "enabled": True,
                  "takedown_contact": str(info.get("takedown_contact", ""))[:200]}
         self.settings.sources.append(entry)

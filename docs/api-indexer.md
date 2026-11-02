@@ -8,7 +8,7 @@ POSTs are rate limited per client IP (default 30/min; admin calls exempt). Bodie
 
 | call | notes |
 |---|---|
-| `GET /v1/node` | `{software: "swarm-indexer", protocol, name, description, takedown_contact, open_publish, stats}` |
+| `GET /v1/node` | `{software: "webways-indexer", protocol, name, description, takedown_contact, open_publish, stats}` |
 | `POST /v1/listings` | a signed listing ([spec](listing-spec.md)). `201` new, `200` updated/stale, `422` invalid, `403` blocked or publisher not allowed, `429` quota |
 | `GET /v1/listings?q=&tag=&license=&publisher=&infohash=&limit=&offset=` | full-text search (FTS5; user input is tokenised and quoted, never passed as query syntax). `limit` ≤ 100 |
 | `GET /v1/listings/{id}` | one listing + rating aggregate + verified badge. `404` for unknown or withdrawn |
@@ -19,7 +19,7 @@ POSTs are rate limited per client IP (default 30/min; admin calls exempt). Bodie
 
 Result items: `{id, listing, received_at, rating: {average, count}, verified: {name, note} | null}`.
 
-## Operator (`Authorization: Bearer $SWARM_ADMIN_TOKEN`)
+## Operator (`Authorization: Bearer $WEBWAYS_ADMIN_TOKEN`)
 
 Disabled (`404`) when the token isn't set.
 

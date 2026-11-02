@@ -52,7 +52,7 @@ def wait_up(url, timeout=20):
 
 
 def main():
-    tmp = Path(tempfile.mkdtemp(prefix="swarm-e2e-"))
+    tmp = Path(tempfile.mkdtemp(prefix="webways-e2e-"))
     env = {**os.environ, "PYTHONPATH": ":".join(str(ROOT / d) for d in ("protocol", "indexer", "core")),
            "PYTHONWARNINGS": "ignore"}
     procs = []
@@ -64,14 +64,14 @@ def main():
         return p
 
     try:
-        spawn("swarm_indexer", "serve", "--db", str(tmp / "idx.db"), "--port", "18780", SWARM_ADMIN_TOKEN="adm")
+        spawn("webways_indexer", "serve", "--db", str(tmp / "idx.db"), "--port", "18780", WEBWAYS_ADMIN_TOKEN="adm")
         for name, port, listen in (("pub", 18782, 16891), ("cli", 18781, 16881)):
             cfg = tmp / name
             cfg.mkdir()
             (cfg / "settings.json").write_text(json.dumps({"download_dir": str(tmp / f"{name}-dl"), "listen_port": listen}))
             (cfg / "token").write_text(f"tok-{name}\n")
             os.chmod(cfg / "token", 0o600)
-            spawn("swarm_core", "serve", "--port", str(port), SWARM_CONFIG_DIR=str(cfg))
+            spawn("webways_core", "serve", "--port", str(port), WEBWAYS_CONFIG_DIR=str(cfg))
         for u in ("http://127.0.0.1:18780/v1/node", "http://127.0.0.1:18781/", "http://127.0.0.1:18782/"):
             wait_up(u)
         PUB, CLI, IDX = "http://127.0.0.1:18782", "http://127.0.0.1:18781", "http://127.0.0.1:18780"

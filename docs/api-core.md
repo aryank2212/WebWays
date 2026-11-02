@@ -2,8 +2,8 @@
 
 Base: `http://127.0.0.1:8781`. JSON in, JSON out. Errors: `{"error": {"code": "...", "message": "..."}}`.
 
-**Auth.** Every `/api/*` call needs `Authorization: Bearer <token>` (`swarm-core token` prints it; stored in
-`~/.config/swarm/token`). The `Host` header must be loopback or `--allow-host`; state-changing requests with a
+**Auth.** Every `/api/*` call needs `Authorization: Bearer <token>` (`webways-core token` prints it; stored in
+`~/.config/webways/token`). The `Host` header must be loopback or `--allow-host`; state-changing requests with a
 mismatched `Origin` get `403`. `/stream/*` uses a per-file signature instead (below).
 An infohash (`{key}`) is 40 lowercase hex (v1, also used for hybrid torrents) or 64 (v2-only).
 
@@ -49,7 +49,7 @@ The client starts with **no** sources. Nothing is queried until you add one.
 | call | notes |
 |---|---|
 | `GET /api/sources` | `{sources: [{url, name, enabled, takedown_contact}]}` |
-| `POST /api/sources` | `{url, name?}`. http(s) only, no credentials. Fetches `/v1/node` to confirm it's a swarm index → `201` |
+| `POST /api/sources` | `{url, name?}`. http(s) only, no credentials. Fetches `/v1/node` to confirm it's a WebWays index → `201` |
 | `PUT /api/sources` | `{url, enabled}` |
 | `DELETE /api/sources?url=…` | |
 | `GET /api/search?q=&tag=&limit=` | `{items: [{id, listing, sources, verified_by, rating}], errors: {url: message}}`. Listings failing signature verification are dropped. `verified_by`/`rating` are *claims by the named node* |

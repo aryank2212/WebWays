@@ -53,7 +53,7 @@ export default function Discover({ onPlay, goto }: { onPlay: (t: PlayerTarget) =
       <section className="card narrow">
         <h2>No index sources yet</h2>
         <p>
-          Swarm doesn’t ship with a catalogue. Discovery works through index nodes that you choose to add —
+          WebWays doesn’t ship with a catalogue. Discovery works through index nodes that you choose to add —
           each one is run by someone else under their own rules. Add one to start searching.
         </p>
         <button className="primary" onClick={() => goto("Sources")}>Add an index source</button>

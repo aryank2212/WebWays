@@ -14,7 +14,7 @@ from urllib.parse import quote, urlsplit
 
 from aiohttp import web
 
-from swarm_protocol import Identity, ProtocolError, listing_id, sign_listing, sign_rating
+from webways_protocol import Identity, ProtocolError, listing_id, sign_listing, sign_rating
 
 from . import __version__
 from .config import Settings
@@ -458,7 +458,7 @@ def make_app(*, settings: Settings, config_dir: Path, engine: Engine, token: str
             app.router.add_static("/assets", ui_dir / "assets")
     else:
         async def hello(_: web.Request) -> web.Response:
-            return web.json_response({"swarm": __version__, "ui": "not built; see ui/README.md"})
+            return web.json_response({"webways": __version__, "ui": "not built; see ui/README.md"})
         app.router.add_get("/", hello)
     app.on_startup.append(lambda a: a[K_ENGINE].start())
     app.on_cleanup.append(lambda a: a[K_ENGINE].stop())

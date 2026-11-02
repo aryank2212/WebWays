@@ -52,3 +52,11 @@ an entry.
 ### D12 — Resume data must include metadata
 libtorrent 2.x only stores the info dictionary with `save_info_dict`; without it, torrents added by magnet could
 never restart offline. All saves use the flag, and shutdown waits for the *newest* snapshot per torrent.
+
+### D13 — Renamed to WebWays (v0.3.0)
+The working name "Swarm" collided with the BitTorrent term for a torrent's peers (confusing in docs and UI copy such
+as "playing from the swarm") and with other software of that name. Everything that named the *project* was renamed,
+including wire-level identifiers: the signature domain separators and the `/v1/node` software id. That was a
+deliberate breaking change taken while there were no deployments and no published listings. Where "swarm" means the
+group of peers, it is kept. Migration notes are in CHANGELOG.md. The old GitHub URL redirects, but redirects can be
+broken by someone later creating a repository with the old name; update bookmarks and remotes.

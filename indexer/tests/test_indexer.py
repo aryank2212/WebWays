@@ -2,11 +2,11 @@ import aiohttp
 import pytest
 from aiohttp.test_utils import TestClient, TestServer
 
-from swarm_indexer.app import make_app
-from swarm_indexer.db import Store
-from swarm_indexer.federation import sync_blocklist, sync_peer
-from swarm_indexer.policy import Policy
-from swarm_protocol import Identity, listing_id, sign_listing, sign_rating
+from webways_indexer.app import make_app
+from webways_indexer.db import Store
+from webways_indexer.federation import sync_blocklist, sync_peer
+from webways_indexer.policy import Policy
+from webways_protocol import Identity, listing_id, sign_listing, sign_rating
 
 ADMIN = {"Authorization": "Bearer s3cret"}
 

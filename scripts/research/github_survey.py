@@ -13,7 +13,7 @@ import time
 import urllib.parse
 import urllib.request
 
-HEADERS = {"Accept": "application/vnd.github+json", "User-Agent": "swarm-research"}
+HEADERS = {"Accept": "application/vnd.github+json", "User-Agent": "webways-research"}
 QUERIES = [
     "create torrent file drag drop",
     "torrent creator in:name,description",

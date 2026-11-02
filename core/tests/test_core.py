@@ -8,13 +8,13 @@ import pytest
 from aiohttp import web
 from aiohttp.test_utils import TestClient, TestServer
 
-from swarm_core.config import Settings
-from swarm_core.engine import Engine
-from swarm_core.streaming import content_type, parse_range
-from swarm_indexer.app import make_app as make_indexer
-from swarm_indexer.db import Store
-from swarm_indexer.policy import Policy
-from swarm_protocol import Identity, sign_listing
+from webways_core.config import Settings
+from webways_core.engine import Engine
+from webways_core.streaming import content_type, parse_range
+from webways_indexer.app import make_app as make_indexer
+from webways_indexer.db import Store
+from webways_indexer.policy import Policy
+from webways_protocol import Identity, sign_listing
 
 from .conftest import AUTH, TOKEN, loopback, wait_for
 
@@ -203,7 +203,7 @@ async def test_search_drops_forged_listings_from_hostile_node(daemon, make_engin
     wrong_key = dict(good, publisher=Identity.generate().public_key)
 
     async def info(_):
-        return web.json_response({"software": "swarm-indexer", "name": "evil", "takedown_contact": ""})
+        return web.json_response({"software": "webways-indexer", "name": "evil", "takedown_contact": ""})
 
     async def listings(_):
         wrap = lambda d: {"id": "0" * 64, "listing": d, "verified": {"name": "Totally Official"},
@@ -227,7 +227,7 @@ async def test_search_drops_forged_listings_from_hostile_node(daemon, make_engin
 
 async def test_dead_source_reported_not_fatal(daemon, make_engine):
     c = await daemon(await make_engine("h"))
-    c.server.app[__import__("swarm_core.api", fromlist=["K_SETTINGS"]).K_SETTINGS].sources.append(
+    c.server.app[__import__("webways_core.api", fromlist=["K_SETTINGS"]).K_SETTINGS].sources.append(
         {"url": "http://127.0.0.1:9", "name": "down", "enabled": True})
     res = await (await c.get("/api/search?q=x", headers=AUTH)).json()
     assert res["items"] == [] and "http://127.0.0.1:9" in res["errors"]

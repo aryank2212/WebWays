@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 @dataclass
 class Policy:
     """Per-node operator policy. Nothing here is a network-wide rule."""
-    name: str = "unnamed swarm index"
+    name: str = "unnamed WebWays index"
     description: str = ""
     # Where rightsholders send notices; published in /v1/node so it is easy to find.
     takedown_contact: str = ""

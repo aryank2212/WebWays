@@ -20,10 +20,10 @@ export interface Settings { download_dir: string; listen_port: number; encryptio
 function loadToken(): string {
   const m = /token=([\w-]+)/.exec(location.hash);
   if (m) {
-    sessionStorage.setItem("swarm-token", m[1]);
+    sessionStorage.setItem("webways-token", m[1]);
     history.replaceState(null, "", location.pathname);
   }
-  return sessionStorage.getItem("swarm-token") ?? "";
+  return sessionStorage.getItem("webways-token") ?? "";
 }
 const token = loadToken();
 export const hasToken = token !== "";

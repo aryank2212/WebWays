@@ -54,9 +54,9 @@ every piece. See [torrent-maker.md](torrent-maker.md).
 
 ## State on disk
 
-`~/.config/swarm/` (override with `SWARM_CONFIG_DIR`): `token` (0600), `settings.json`, `publisher.key` (0600),
+`~/.config/webways/` (override with `WEBWAYS_CONFIG_DIR`): `token` (0600), `settings.json`, `publisher.key` (0600),
 `publish_seq.json`, `state/resume/*.resume` (libtorrent resume data incl. metadata), `state/created/*.torrent`.
-Downloads go to `download_dir` (default `~/Downloads/swarm`). Index nodes: one SQLite file (`--db`).
+Downloads go to `download_dir` (default `~/Downloads/webways`). Index nodes: one SQLite file (`--db`).
 
 ## Concurrency notes
 

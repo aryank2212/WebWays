@@ -11,11 +11,11 @@ from urllib.parse import urlsplit
 
 
 def default_config_dir() -> Path:
-    return Path(os.environ.get("SWARM_CONFIG_DIR") or Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "swarm")
+    return Path(os.environ.get("WEBWAYS_CONFIG_DIR") or Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "webways")
 
 
 def default_download_dir() -> Path:
-    return Path.home() / "Downloads" / "swarm"
+    return Path.home() / "Downloads" / "webways"
 
 
 def normalize_source_url(url: str) -> str:

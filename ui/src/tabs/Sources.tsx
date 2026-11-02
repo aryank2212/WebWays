@@ -18,7 +18,7 @@ export default function SourcesTab() {
       <div className="card">
         <h2>Index sources</h2>
         <p className="small">
-          An index source is a server run by someone else that lists torrents. Swarm has none built in and
+          An index source is a server run by someone else that lists torrents. WebWays has none built in and
           verifies every listing’s signature itself, but each operator decides what they carry — you decide which
           operators you trust. Adding a source here is your choice.
         </p>

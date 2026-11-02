@@ -11,12 +11,12 @@ import re
 
 import aiohttp
 
-from swarm_protocol import ProtocolError, verify_listing
+from webways_protocol import ProtocolError, verify_listing
 
 from .db import Rejected, Store
 from .policy import Policy
 
-log = logging.getLogger("swarm.federation")
+log = logging.getLogger("webways.federation")
 _HEX = re.compile(r"^[0-9a-f]{40}$|^[0-9a-f]{64}$")
 _B64U = re.compile(r"^[A-Za-z0-9_-]{43}$")
 _OK_VALUE = {"infohash": _HEX, "listing": re.compile(r"^[0-9a-f]{64}$"), "publisher": _B64U}

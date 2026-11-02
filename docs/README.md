@@ -1,4 +1,4 @@
-# Swarm documentation
+# WebWays documentation
 
 | document | what it covers |
 |---|---|

@@ -34,7 +34,7 @@ through a local client**. So we built only that glue, on top of the reused libra
 - drop zone with folder walking (`webkitGetAsEntry`), junk filtering that mirrors the library's rule;
 - options UI with privacy-first defaults (no trackers);
 - converter/inspector UI;
-- the seed-upload protocol and its safety checks (`core/swarm_core/seeding.py`);
+- the seed-upload protocol and its safety checks (`core/webways_core/seeding.py`);
 - the browser `path` shim.
 
 Roughly: ~300 lines of UI, ~150 lines of browser helpers, ~150 lines of daemon code. The hashing, bencoding, magnet

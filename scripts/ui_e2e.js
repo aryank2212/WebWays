@@ -13,7 +13,7 @@ const api = async (base, tok, method, p, body) => {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 (async () => {
-  const work = fs.mkdtempSync(path.join(os.tmpdir(), 'swarm-ui-'));
+  const work = fs.mkdtempSync(path.join(os.tmpdir(), 'webways-ui-'));
   const album = path.join(work, 'album'); fs.mkdirSync(path.join(album, 'disc1'), { recursive: true });
   fs.writeFileSync(path.join(album, 'a.bin'), crypto.randomBytes(300_000));
   fs.writeFileSync(path.join(album, 'disc1', 'b.bin'), crypto.randomBytes(120_000));

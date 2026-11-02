@@ -19,9 +19,9 @@ ui-nice:
 	cd ui && NODE_OPTIONS=--max-old-space-size=1024 nice -n 15 npm run build
 
 daemon:
-	PYTHONPATH=protocol:indexer:core $(PY) -m swarm_core serve
+	PYTHONPATH=protocol:indexer:core $(PY) -m webways_core serve
 
 indexer:
-	PYTHONPATH=protocol:indexer:core SWARM_ADMIN_TOKEN=$${SWARM_ADMIN_TOKEN:?set SWARM_ADMIN_TOKEN} $(PY) -m swarm_indexer serve
+	PYTHONPATH=protocol:indexer:core WEBWAYS_ADMIN_TOKEN=$${WEBWAYS_ADMIN_TOKEN:?set WEBWAYS_ADMIN_TOKEN} $(PY) -m webways_indexer serve
 
 .PHONY: setup test e2e ui ui-nice daemon indexer

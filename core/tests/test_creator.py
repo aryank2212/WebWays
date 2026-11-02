@@ -7,8 +7,8 @@ from pathlib import Path
 import libtorrent as lt
 import pytest
 
-from swarm_core.config import Settings
-from swarm_core.engine import Engine
+from webways_core.config import Settings
+from webways_core.engine import Engine
 
 from .conftest import AUTH, loopback, wait_for
 

@@ -11,8 +11,8 @@ from .errors import ProtocolError
 from .keys import Identity, b64u_decode, verify
 
 VERSION = 1
-LISTING_DOMAIN = b"swarm-listing-v1\x00"
-RATING_DOMAIN = b"swarm-rating-v1\x00"
+LISTING_DOMAIN = b"webways-listing-v1\x00"
+RATING_DOMAIN = b"webways-rating-v1\x00"
 MAX_FUTURE_SKEW = 24 * 3600
 
 _HEX_V1 = re.compile(r"^[0-9a-f]{40}$")

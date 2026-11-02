@@ -79,7 +79,7 @@ make v2 and hybrid torrents, which the browser library cannot.
 ## Code map
 
 `ui/src/tabs/Create.tsx` (UI) · `ui/src/lib/maker.ts` (drop/walk, junk filter, create, parse, magnet) ·
-`ui/src/lib/path-shim.ts` (browser stand-in for Node `path`) · `core/swarm_core/seeding.py` (upload staging) ·
-`core/swarm_core/engine.py::create_torrent` (server-side creation).
+`ui/src/lib/path-shim.ts` (browser stand-in for Node `path`) · `core/webways_core/seeding.py` (upload staging) ·
+`core/webways_core/engine.py::create_torrent` (server-side creation).
 Reused libraries: see [research/github-survey.md](research/github-survey.md) and
 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).

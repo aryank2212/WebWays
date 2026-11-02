@@ -1,4 +1,4 @@
-"""swarm-core serve | token"""
+"""webways-core serve | token"""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,7 @@ from .engine import Engine
 
 
 def main(argv: list[str] | None = None) -> None:
-    ap = argparse.ArgumentParser(prog="swarm-core")
+    ap = argparse.ArgumentParser(prog="webways-core")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("token", help="print the local API token")
     s = sub.add_parser("serve", help="run the daemon")
@@ -37,7 +37,7 @@ def main(argv: list[str] | None = None) -> None:
     app = make_app(settings=settings, config_dir=config_dir, engine=engine, token=token,
                    ui_dir=args.ui_dir, extra_hosts=set(args.allow_host))
     shown = "127.0.0.1" if args.host in ("0.0.0.0", "::") else args.host
-    print(f"swarm-core listening on http://{args.host}:{args.port}\nopen: http://{shown}:{args.port}/#token={token}", flush=True)
+    print(f"webways-core listening on http://{args.host}:{args.port}\nopen: http://{shown}:{args.port}/#token={token}", flush=True)
     web.run_app(app, host=args.host, port=args.port, print=None)
 
 

@@ -4,7 +4,7 @@ The daemon runs on the user's machine and can read and write files, so it is har
 pages that try to reach it, not only against other programs.
 
 - **Loopback by default.** `--host` must be changed deliberately to expose it.
-- **Bearer token** (`~/.config/swarm/token`, mode 0600) on every `/api/*` call, compared in constant time.
+- **Bearer token** (`~/.config/webways/token`, mode 0600) on every `/api/*` call, compared in constant time.
   The browser UI receives it in the URL *fragment*, which is never sent to a server, then strips it.
 - **Host check** (`421`) defeats DNS-rebinding; add `--allow-host` only when serving through a reverse proxy.
 - **Origin check** (`403`) on state-changing requests. No CORS headers are sent.
@@ -18,7 +18,7 @@ pages that try to reach it, not only against other programs.
 - **Transport encryption** (protocol encryption) is preferred by default; `forced` rejects plain peers.
   It hides content from passive observers but not the fact that you are using BitTorrent, and your IP
   is still visible to the swarm. Use a VPN if that matters.
-- Publisher keys are stored unencrypted at `~/.config/swarm/publisher.key` (0600). Losing the file
+- Publisher keys are stored unencrypted at `~/.config/webways/publisher.key` (0600). Losing the file
   loses the identity; leaking it lets anyone publish as you.
 
 ## Creator and seed upload

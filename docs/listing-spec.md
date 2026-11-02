@@ -27,7 +27,7 @@ mean a new `v`.
 ## Signing
 
 ```
-message = "swarm-listing-v1\0" || canonical(listing without "sig")
+message = "webways-listing-v1\0" || canonical(listing without "sig")
 sig     = ed25519_sign(publisher_private_key, message)
 ```
 
@@ -46,7 +46,7 @@ A withdrawal removes the listing from search but cannot remove the torrent itsel
 
 ```
 {v:1, listing:<id>, rater:<pubkey>, score:1..5, created:<int>, sig}
-message = "swarm-rating-v1\0" || canonical(rating without "sig")
+message = "webways-rating-v1\0" || canonical(rating without "sig")
 ```
 
 One vote per key per listing (newest wins). A key is free to create, so ratings are weak evidence on

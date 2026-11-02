@@ -29,9 +29,9 @@ export default function App() {
   if (!hasToken) {
     return (
       <main className="narrow">
-        <h1>Swarm</h1>
+        <h1>WebWays</h1>
         <p>
-          This page needs the local API token. Start the daemon with <code>swarm-core serve</code> and open the
+          This page needs the local API token. Start the daemon with <code>webways-core serve</code> and open the
           address it prints (it ends in <code>#token=…</code>).
         </p>
       </main>
@@ -41,7 +41,7 @@ export default function App() {
   return (
     <>
       <header>
-        <strong className="brand">Swarm</strong>
+        <strong className="brand">WebWays</strong>
         <nav>
           {TABS.map((t) => (
             <button key={t} className={t === tab ? "active" : ""} onClick={() => setTab(t)}>{t}</button>

@@ -8,7 +8,7 @@ from collections import defaultdict, deque
 
 from aiohttp import web
 
-from swarm_protocol import ProtocolError, verify_listing, verify_rating
+from webways_protocol import ProtocolError, verify_listing, verify_rating
 
 from .db import REPORT_CATEGORIES, Rejected, Store
 from .policy import Policy
@@ -84,7 +84,7 @@ def _int(request: web.Request, name: str, default: int) -> int:
 async def node_info(request: web.Request) -> web.Response:
     pol: Policy = request.app[POLICY]
     return web.json_response({
-        "software": "swarm-indexer", "protocol": 1, "name": pol.name, "description": pol.description,
+        "software": "webways-indexer", "protocol": 1, "name": pol.name, "description": pol.description,
         "takedown_contact": pol.takedown_contact, "open_publish": pol.open_publish,
         "stats": request.app[STORE].stats(),
     })

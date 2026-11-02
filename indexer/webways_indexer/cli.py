@@ -1,4 +1,4 @@
-"""swarm-indexer serve --db index.db [--config node.toml]"""
+"""webways-indexer serve --db index.db [--config node.toml]"""
 from __future__ import annotations
 
 import argparse
@@ -29,7 +29,7 @@ def load_policy(path: str | None) -> Policy:
 
 
 def main(argv: list[str] | None = None) -> None:
-    ap = argparse.ArgumentParser(prog="swarm-indexer")
+    ap = argparse.ArgumentParser(prog="webways-indexer")
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("serve")
     s.add_argument("--db", default="index.db")
@@ -45,9 +45,9 @@ def main(argv: list[str] | None = None) -> None:
     policy.peers += args.peer
     policy.blocklist_subscriptions += args.blocklist
     # The admin token comes from the environment so it never lands in shell history or `ps`.
-    token = os.environ.get("SWARM_ADMIN_TOKEN", "")
+    token = os.environ.get("WEBWAYS_ADMIN_TOKEN", "")
     if not token:
-        logging.warning("SWARM_ADMIN_TOKEN not set: takedown/verification endpoints are disabled")
+        logging.warning("WEBWAYS_ADMIN_TOKEN not set: takedown/verification endpoints are disabled")
 
     async def start(app: web.Application):
         task = asyncio.create_task(run_forever(app["store_"], policy))

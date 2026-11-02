@@ -1,6 +1,6 @@
 import pytest
 
-from swarm_protocol import (Identity, ProtocolError, canonical, listing_id, sign_listing,
+from webways_protocol import (Identity, ProtocolError, canonical, listing_id, sign_listing,
                             sign_rating, supersedes, verify_listing, verify_rating)
 
 IH = "ab" * 20
