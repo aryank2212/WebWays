@@ -60,3 +60,10 @@ including wire-level identifiers: the signature domain separators and the `/v1/n
 deliberate breaking change taken while there were no deployments and no published listings. Where "swarm" means the
 group of peers, it is kept. Migration notes are in CHANGELOG.md. The old GitHub URL redirects, but redirects can be
 broken by someone later creating a repository with the old name; update bookmarks and remotes.
+
+### D14 — One wordmark face, one spelling
+The name is displayed only as "WebWays" and set in Bodoni Moda Bold wherever it appears as a name. Reason: a single
+recognisable look with an open license (OFL), bundled so the UI stays free of third-party requests. Chosen to match a
+bold high-contrast serif style the project owner asked for; the exact face of that reference wasn't identifiable or
+known to be licensable, so a similar open font is used. Rejected: loading from Google Fonts (privacy, CSP),
+serif for all body text (readability).

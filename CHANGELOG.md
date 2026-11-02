@@ -2,6 +2,18 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com). Versions are pre-1.0; the API may change.
 
+## [0.3.1] - 2026-11-02
+
+### Changed
+- **Consistent name styling:** the name is always displayed as "WebWays" (capital W at both word starts), set in one
+  face everywhere: Bodoni Moda Bold, a bold high-contrast serif, tracking -0.02em. Applied in the UI header and
+  headings via a shared `<Brand />` component, in a README banner (light/dark), and in a new "W" favicon.
+- The font is bundled (`@fontsource/bodoni-moda`, OFL-1.1); the UI makes no third-party font requests.
+- GitHub repository name is now `WebWays` (same URL, case-insensitive; old links keep working).
+
+### Added
+- `docs/branding.md`, `scripts/gen_wordmark.py` (outlined, kerned SVG wordmark and favicon generator).
+
 ## [0.3.0] - 2026-11-02
 
 ### Changed

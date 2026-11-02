@@ -1,6 +1,6 @@
 [project]
 name = "webways-indexer"
-version = "0.3.0"
+version = "0.3.1"
 description = "Federated index node: signed listings, FTS search, operator moderation"
 requires-python = ">=3.11"
 dependencies = ["webways-protocol", "aiohttp>=3.9"]

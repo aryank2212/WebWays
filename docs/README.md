@@ -11,6 +11,7 @@
 | [security.md](security.md) | threat model and the controls behind it |
 | [decisions.md](decisions.md) | why things are the way they are (and what was rejected) |
 | [testing.md](testing.md) | how to run every test, what each covers, what is *not* covered |
+| [branding.md](branding.md) | how the name is written and the wordmark font/assets |
 | [roadmap.md](roadmap.md) | status of each phase and what is next |
 | [research/github-survey.md](research/github-survey.md) | the "look on GitHub first" survey and the reuse-vs-build decision |
 | [research/github-survey-data.md](research/github-survey-data.md) | raw, dated survey output (regenerable) |

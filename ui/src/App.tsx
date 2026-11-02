@@ -5,6 +5,7 @@ import Downloads from "./tabs/Downloads";
 import Create from "./tabs/Create";
 import Publish from "./tabs/Publish";
 import SourcesTab from "./tabs/Sources";
+import Brand from "./Brand";
 import Player, { PlayerTarget } from "./Player";
 
 const TABS = ["Discover", "Downloads", "Create", "Publish", "Sources"] as const;
@@ -29,7 +30,7 @@ export default function App() {
   if (!hasToken) {
     return (
       <main className="narrow">
-        <h1>WebWays</h1>
+        <h1><Brand /></h1>
         <p>
           This page needs the local API token. Start the daemon with <code>webways-core serve</code> and open the
           address it prints (it ends in <code>#token=…</code>).
@@ -41,7 +42,7 @@ export default function App() {
   return (
     <>
       <header>
-        <strong className="brand">WebWays</strong>
+        <strong className="brand"><Brand /></strong>
         <nav>
           {TABS.map((t) => (
             <button key={t} className={t === tab ? "active" : ""} onClick={() => setTab(t)}>{t}</button>

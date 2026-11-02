@@ -27,7 +27,21 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   page.on('console', (m) => { if (['error', 'warning'].includes(m.type())) problems.push(m.text()); });
   page.on('pageerror', (e) => problems.push('pageerror ' + e.message));
 
+  const hosts = new Set();
+  page.on('request', (r) => hosts.add(new URL(r.url()).host));
   await page.goto(CLI + '/#token=tok-cli');
+  console.log('0. branding');
+  await page.waitForSelector('header .wordmark');
+  assert((await page.textContent('header .wordmark')) === 'WebWays', 'header shows the name exactly as "WebWays" (capital W at both word starts)');
+  const face = await page.evaluate(async () => {
+    await document.fonts.ready;
+    const el = document.querySelector('header .wordmark');
+    return { family: getComputedStyle(el).fontFamily, weight: getComputedStyle(el).fontWeight, loaded: document.fonts.check('700 20px "Bodoni Moda"'),
+             faces: [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family) };
+  });
+  assert(/Bodoni Moda/.test(face.family) && face.weight === '700' && face.loaded && face.faces.some((f) => /Bodoni Moda/.test(f)), 'wordmark renders in the bundled Bodoni Moda Bold (' + face.faces.join(',') + ')');
+  assert((await page.title()) === 'WebWays', 'page title is "WebWays"');
+  await page.screenshot({ path: path.join(work, 'brand.png'), clip: { x: 0, y: 0, width: 900, height: 70 } });
   await page.click('nav button:has-text("Create")');
 
   console.log('1. folder -> torrent');
@@ -101,8 +115,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.waitForSelector('text=doesn’t look like');
   assert(true, 'garbage input gives a friendly error');
 
+  assert([...hosts].every((h) => h === '127.0.0.1:18781'), 'every request stayed on localhost, no third-party fonts or CDNs: ' + [...hosts].join(','));
   assert(problems.length === 0, 'no console errors or failed requests ' + JSON.stringify(problems));
   await page.screenshot({ path: path.join(work, 'create.png'), fullPage: true });
-  console.log('screenshot:', path.join(work, 'create.png'), '\nUI E2E PASS');
+  console.log('screenshots:', path.join(work, 'brand.png'), path.join(work, 'create.png'), '\nUI E2E PASS');
   await browser.close();
 })().catch((e) => { console.error('FAIL', e.message); process.exit(1); });

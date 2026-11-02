@@ -1,4 +1,9 @@
-# WebWays
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/webways-wordmark-light.svg">
+    <img src="docs/assets/webways-wordmark.svg" alt="WebWays" height="64">
+  </picture>
+</h1>
 
 A BitTorrent client with streaming, plus an optional decentralized marketplace layer. The client is
 useful on its own; the marketplace is a set of signed listings served by federated index nodes that

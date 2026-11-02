@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api, SearchItem, Source } from "../api";
 import type { PlayerTarget } from "../Player";
 import { isMedia } from "../api";
+import Brand from "../Brand";
 
 export default function Discover({ onPlay, goto }: { onPlay: (t: PlayerTarget) => void; goto: (t: string) => void }) {
   const [sources, setSources] = useState<Source[] | null>(null);
@@ -53,7 +54,7 @@ export default function Discover({ onPlay, goto }: { onPlay: (t: PlayerTarget) =
       <section className="card narrow">
         <h2>No index sources yet</h2>
         <p>
-          WebWays doesn’t ship with a catalogue. Discovery works through index nodes that you choose to add —
+          <Brand /> doesn’t ship with a catalogue. Discovery works through index nodes that you choose to add —
           each one is run by someone else under their own rules. Add one to start searching.
         </p>
         <button className="primary" onClick={() => goto("Sources")}>Add an index source</button>
