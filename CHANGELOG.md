@@ -1,0 +1,36 @@
+# Changelog
+
+Format: [Keep a Changelog](https://keepachangelog.com). Versions are pre-1.0; the API may change.
+
+## [0.2.0] - 2026-11-02
+
+### Added
+- **Create tab:** free drag-and-drop torrent & magnet creator. Drop files or a folder; get info hash, magnet link
+  and `.torrent`. Options: name, comment, piece size, trackers, web seeds, private flag. Built on the MIT
+  libraries `create-torrent` and `parse-torrent` (found via a GitHub survey; see `docs/research/`).
+- **Convert / inspect:** drop a `.torrent` or paste a magnet link / info hash to convert it and see its contents.
+- **Seed from this device:** `POST /api/seed/prepare`, `PUT /api/seed/{key}/files/{i}`, `POST /api/seed/{key}/finish`,
+  `DELETE /api/seed/{key}`. Safe staging: paths contained, no overwrite, exact sizes, disk check, libtorrent verifies.
+- `POST /api/create` options: `trackers`, `webseeds`, `private`, `piece_size`, `version` (v1/v2/hybrid).
+- `GET /api/torrents/{key}/torrent` downloads the `.torrent`.
+- `POST /api/torrents/{key}/peers` to connect a known peer.
+- Publish tab can be pre-filled from the Create tab.
+- Documentation set under `docs/`, `THIRD_PARTY_NOTICES.md`, `CONTRIBUTING.md`, `SECURITY.md`, CI workflow,
+  reproducible GitHub survey script.
+- Browser end-to-end test `scripts/ui_e2e.js`.
+
+### Changed
+- Created torrents contain **no trackers** unless the user lists them (the underlying library's eight built-in
+  public trackers are overridden).
+- Files that are hidden system junk are skipped when picked, and the UI says how many.
+
+### Fixed
+- Resume data now includes torrent metadata (libtorrent `save_info_dict`), so magnet-added torrents restart offline.
+- Shutdown waits for the newest resume snapshot per torrent (stale snapshots previously could win a race).
+- Queued torrents no longer display as "paused".
+
+## [0.1.0] - 2026-11-02
+
+### Added
+- Daemon (libtorrent, REST API, HTTP Range streaming), web UI, signed-listing protocol, federated index node with
+  full-text search, takedown/blocklists/reports/ratings/verified badges, end-to-end smoke test.

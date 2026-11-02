@@ -1,0 +1,28 @@
+name: ci
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: Python deps
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install libtorrent aiohttp cryptography pytest pytest-asyncio
+      - name: Tests
+        run: .venv/bin/pytest -q
+      - name: UI typecheck and build
+        working-directory: ui
+        run: |
+          npm ci
+          npm run build
+      - name: End-to-end (real processes, loopback)
+        run: .venv/bin/python scripts/e2e.py
