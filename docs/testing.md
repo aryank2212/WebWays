@@ -34,4 +34,4 @@ NODE_PATH=/path/to/node_modules CHROME=/usr/bin/google-chrome node scripts/ui_e2
 - playback in a real media player (bytes are verified, not decoding);
 - non-Linux platforms; browsers other than Chrome;
 - indexer under load (single SQLite connection);
-- the GitHub Actions workflow (written but only exercised by GitHub itself).
+- anything CI doesn't run: the browser test (`scripts/ui_e2e.js`) is run by hand. The GitHub Actions workflow (tests, UI build, real-process e2e) passed on a clean Ubuntu runner on 2026-11-02.
